@@ -1,0 +1,10 @@
+# ninja log v5
+19	1129	8143911279858336	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	aaf24a45429ea287
+27	1137	8143911279878874	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c398d1992fb35ef1
+42	1139	8143911279930189	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	75ef8af518810330
+7	1151	8143911280042508	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	f9b7724f8e01e1c2
+13	1216	8143911280707610	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4ac2347b92b4a8bd
+50	1345	8143911282015848	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8571513a13d686c8
+35	1393	8143911282495262	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	5e7c9ce4db39d723
+1	1499	8143911283534879	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8b680f043cf14a70
+1499	1635	8143911284896722	C:/Users/Alumno tarde/El leon de Ayose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/234z155q/obj/arm64-v8a/libgame.so	152bfe605730d95e
