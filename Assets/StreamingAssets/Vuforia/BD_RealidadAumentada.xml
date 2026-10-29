@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="inundacion_3" size="0.200000 0.150000" />
+    <ImageTarget name="leon_3" size="0.200000 0.112500" />
+    <ImageTarget name="inundacion_2" size="0.200000 0.112500" />
+    <ImageTarget name="leon_1" size="0.200000 0.112500" />
+  </Tracking>
+</QCARConfig>
