@@ -621,13 +621,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Leona2CM
+  mTrackableName: leon_1
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/LeonDeAyose.xml
-  mAspectRatio: 1.025815
+  mDataSetPath: Vuforia/BD_RealidadAumentada.xml
+  mAspectRatio: 0.5625
   mImageTargetType: 0
   mWidth: 0.2
-  mHeight: 0.205163
+  mHeight: 0.1125
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -664,8 +664,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 863509618}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Leona2CM
-  mDatasetName: Vuforia/LeonDeAyose.xml
+  mTargetName: leon_1
+  mDatasetName: Vuforia/BD_RealidadAumentada.xml
   mCastedBehaviour: {fileID: 863509618}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -1003,10 +1003,166 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD:Assets/Scenes/Game.unity
   - component: {fileID: 1780626543}
   - component: {fileID: 1780626542}
   - component: {fileID: 1780626541}
   - component: {fileID: 1780626544}
+=======
+  - component: {fileID: 1627741453}
+  - component: {fileID: 1627741452}
+  - component: {fileID: 1627741451}
+  - component: {fileID: 1627741454}
+  m_Layer: 0
+  m_Name: ImageTarget (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1627741451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627741449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VuforiaScripts::DefaultObserverEventHandler
+  StatusFilter: 2
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1244145173}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1244145173}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1627741452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627741449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1631628248, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetBehaviour
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: inundacion_2
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/BD_RealidadAumentada.xml
+  mAspectRatio: 0.5625
+  mImageTargetType: 0
+  mWidth: 0.2
+  mHeight: 0.1125
+  mRuntimeTexture: {fileID: 0}
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mPreview: {fileID: 1627741454}
+--- !u!4 &1627741453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627741449}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 130920957}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1627741454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627741449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 1627741452}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: inundacion_2
+  mDatasetName: Vuforia/BD_RealidadAumentada.xml
+  mCastedBehaviour: {fileID: 1627741452}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!1 &1860075524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860075528}
+  - component: {fileID: 1860075527}
+  - component: {fileID: 1860075526}
+  - component: {fileID: 1860075529}
+>>>>>>> 9f8c384b55a648a4b90a394db33e9a1a93dcd7df:Assets/Scenes/SampleScene.unity
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -1085,13 +1241,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: capturadepantalla2026-10-13174526
+  mTrackableName: inundacion_3
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/LeonDeAyose.xml
-  mAspectRatio: 0.64536
+  mDataSetPath: Vuforia/BD_RealidadAumentada.xml
+  mAspectRatio: 0.75
   mImageTargetType: 0
+<<<<<<< HEAD:Assets/Scenes/Game.unity
   mWidth: 0.19999999
   mHeight: 0.129072
+=======
+  mWidth: 0.2
+  mHeight: 0.15
+>>>>>>> 9f8c384b55a648a4b90a394db33e9a1a93dcd7df:Assets/Scenes/SampleScene.unity
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -1126,9 +1287,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 1780626542}
   mHiddenRoot: {fileID: 0}
+<<<<<<< HEAD:Assets/Scenes/Game.unity
   mTargetName: capturadepantalla2026-10-13174526
   mDatasetName: Vuforia/LeonDeAyose.xml
   mCastedBehaviour: {fileID: 1780626542}
+=======
+  mTargetName: inundacion_3
+  mDatasetName: Vuforia/BD_RealidadAumentada.xml
+  mCastedBehaviour: {fileID: 1860075527}
+>>>>>>> 9f8c384b55a648a4b90a394db33e9a1a93dcd7df:Assets/Scenes/SampleScene.unity
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
