@@ -94,6 +94,46 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Clicker",
+            "id": "af2b530d-519e-44b5-a58f-ea0cec697863",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "0045aac6-ee61-4865-b65c-b166d83a7e8a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "512d04e2-bb87-4b4b-8dbc-ac1b85b8eea9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bded789b-03dc-40bd-9fb8-4253e9661f6e",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

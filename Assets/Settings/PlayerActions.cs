@@ -180,6 +180,46 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Clicker"",
+            ""id"": ""af2b530d-519e-44b5-a58f-ea0cec697863"",
+            ""actions"": [
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""0045aac6-ee61-4865-b65c-b166d83a7e8a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""512d04e2-bb87-4b4b-8dbc-ac1b85b8eea9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bded789b-03dc-40bd-9fb8-4253e9661f6e"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -189,11 +229,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m__3DViewer_Rotate = m__3DViewer.FindAction("Rotate", throwIfNotFound: true);
         m__3DViewer_PointerMovement = m__3DViewer.FindAction("PointerMovement", throwIfNotFound: true);
         m__3DViewer_Zoom = m__3DViewer.FindAction("Zoom", throwIfNotFound: true);
+        // Clicker
+        m_Clicker = asset.FindActionMap("Clicker", throwIfNotFound: true);
+        m_Clicker_Click = m_Clicker.FindAction("Click", throwIfNotFound: true);
     }
 
     ~@PlayerActions()
     {
         UnityEngine.Debug.Assert(!m__3DViewer.enabled, "This will cause a leak and performance issues, PlayerActions._3DViewer.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Clicker.enabled, "This will cause a leak and performance issues, PlayerActions.Clicker.Disable() has not been called.");
     }
 
     /// <summary>
@@ -383,6 +427,102 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="_3DViewerActions" /> instance referencing this action map.
     /// </summary>
     public _3DViewerActions @_3DViewer => new _3DViewerActions(this);
+
+    // Clicker
+    private readonly InputActionMap m_Clicker;
+    private List<IClickerActions> m_ClickerActionsCallbackInterfaces = new List<IClickerActions>();
+    private readonly InputAction m_Clicker_Click;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Clicker".
+    /// </summary>
+    public struct ClickerActions
+    {
+        private @PlayerActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ClickerActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Clicker/Click".
+        /// </summary>
+        public InputAction @Click => m_Wrapper.m_Clicker_Click;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Clicker; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ClickerActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ClickerActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ClickerActions" />
+        public void AddCallbacks(IClickerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ClickerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ClickerActionsCallbackInterfaces.Add(instance);
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ClickerActions" />
+        private void UnregisterCallbacks(IClickerActions instance)
+        {
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ClickerActions.UnregisterCallbacks(IClickerActions)" />.
+        /// </summary>
+        /// <seealso cref="ClickerActions.UnregisterCallbacks(IClickerActions)" />
+        public void RemoveCallbacks(IClickerActions instance)
+        {
+            if (m_Wrapper.m_ClickerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ClickerActions.AddCallbacks(IClickerActions)" />
+        /// <seealso cref="ClickerActions.RemoveCallbacks(IClickerActions)" />
+        /// <seealso cref="ClickerActions.UnregisterCallbacks(IClickerActions)" />
+        public void SetCallbacks(IClickerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ClickerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ClickerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ClickerActions" /> instance referencing this action map.
+    /// </summary>
+    public ClickerActions @Clicker => new ClickerActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "3DViewer" which allows adding and removing callbacks.
     /// </summary>
@@ -411,5 +551,20 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnZoom(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Clicker" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ClickerActions.AddCallbacks(IClickerActions)" />
+    /// <seealso cref="ClickerActions.RemoveCallbacks(IClickerActions)" />
+    public interface IClickerActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClick(InputAction.CallbackContext context);
     }
 }
