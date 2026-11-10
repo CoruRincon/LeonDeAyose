@@ -1,22 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 // Plays music and sound effects. Clips are authored in the inspector as
 // name/clip pairs and copied into dictionaries for lookup by name. Update keeps
 // the right music track playing for the current GameState and applies volumes.
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : MonoBehaviour {
 
     public static AudioManager Instance;
 
-    [SerializeField] 
+    [SerializeField]
     private AudioSource musicSource, effectsSource, playerSource;
 
     [Serializable]
-    public struct AudioAssets
-    {
+    public struct AudioAssets {
         public string name;
         public AudioClip effectSound;
     }
@@ -39,20 +36,16 @@ public class AudioManager : MonoBehaviour
     public bool isMuted = false;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        if(Instance == null)
-        {
+    void Awake() {
+        if (Instance == null) {
             Instance = this;
         }
 
-        if(MusicDictionary.Count == 0)
-        {
+        if (MusicDictionary.Count == 0) {
             FillMusic();
         }
 
-        if (EffectsDictionary.Count == 0)
-        {
+        if (EffectsDictionary.Count == 0) {
             FillEffects();
         }
 
@@ -61,19 +54,15 @@ public class AudioManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         musicSource.volume = actualMusicVolume;
         effectsSource.volume = actualEffectVolume;
-        if(playerSource)
-        {
+        if (playerSource) {
             playerSource.volume = actualEffectVolume;
         }
 
-        if (musicEnabled && !isMuted)
-        {
-            switch (GameManager.Instance.GetCurrentState())
-            {
+        if (musicEnabled && !isMuted) {
+            switch (GameManager.Instance.GetCurrentState()) {
                 /*case GameManager.GameStates.LOADING:
                     //musicEnabled = false;
                     break;*/
@@ -91,78 +80,66 @@ public class AudioManager : MonoBehaviour
                     CheckMusic(musicSource, "MenuMusic");
                     break;
             }
-        } else
-        {
-            if(musicSource != null && musicSource.isPlaying) 
-            { 
+        }
+
+        if (isMuted) {
+            if (musicSource != null && musicSource.isPlaying) {
                 musicSource.Stop();
             }
 
-            if (effectsSource != null && effectsSource.isPlaying)
-            {
+            if (effectsSource != null && effectsSource.isPlaying) {
                 effectsSource.Stop();
             }
 
-            if (playerSource != null && playerSource.isPlaying)
-            {
+            if (playerSource != null && playerSource.isPlaying) {
                 playerSource.Stop();
             }
         }
+
         SetMasterVolume(masterVolume);
     }
 
-    private void FillMusic()
-    {
-        if(Music.Length == 0) { return; }
-        foreach (var item in Music)
-        {
+    private void FillMusic() {
+        if (Music.Length == 0) { return; }
+        foreach (var item in Music) {
             MusicDictionary.Add(item.name, item.effectSound);
         }
     }
 
-    private void FillEffects()
-    {
-        if(Effects.Length == 0) { return; }
-        foreach (var item in Effects)
-        {
+    private void FillEffects() {
+        if (Effects.Length == 0) { return; }
+        foreach (var item in Effects) {
             EffectsDictionary.Add(item.name, item.effectSound);
         }
     }
 
     // Switches the source to the requested track only if it isn't already playing it.
-    private void CheckMusic(AudioSource thisSource, string thisMusic)
-    {
-        if (musicEnabled)
-        {
-            if (!MusicDictionary[thisMusic] || MusicDictionary[thisMusic] == null)
-            {
+    private void CheckMusic(AudioSource thisSource, string thisMusic) {
+        if (musicEnabled) {
+            if (!MusicDictionary[thisMusic] || MusicDictionary[thisMusic] == null) {
                 Debug.Log("Musica not found");
                 return;
             }
 
             AudioClip currentMusic = MusicDictionary[thisMusic];
 
-            if(thisSource.isPlaying && thisSource.clip == currentMusic)
-            {
+            if (thisSource.isPlaying && thisSource.clip == currentMusic) {
                 //Debug.Log("Music playing correctly");
                 return;
-            } else
-            {
+            }
+            else {
                 thisSource.clip = currentMusic;
                 thisSource.Play();
             }
         }
     }
 
-    public void PlayEffect(string name)
-    {
-        if (isMuted)
-        {
+    public void PlayEffect(string name) {
+        if (isMuted) {
             return;
         }
 
-        if (!EffectsDictionary[name] || EffectsDictionary[name] == null)
-        {
+        if (!EffectsDictionary[name] || EffectsDictionary[name] == null) {
             Debug.Log("Effect not found");
             return;
         }
@@ -170,16 +147,13 @@ public class AudioManager : MonoBehaviour
         AudioClip currentEffect = EffectsDictionary[name];
         effectsSource.PlayOneShot(currentEffect);
     }
-    
-    public void PlayEffectPlayer(string name)
-    {
-        if (isMuted || playerSource.isPlaying)
-        {
+
+    public void PlayEffectPlayer(string name) {
+        if (isMuted || playerSource.isPlaying) {
             return;
         }
 
-        if (!EffectsDictionary[name] || EffectsDictionary[name] == null)
-        {
+        if (!EffectsDictionary[name] || EffectsDictionary[name] == null) {
             Debug.Log("Effect not found");
             return;
         }
@@ -188,43 +162,36 @@ public class AudioManager : MonoBehaviour
         playerSource.PlayOneShot(currentEffect);
     }
 
-    public void StopEffectPlayer()
-    {
+    public void StopEffectPlayer() {
         playerSource.Stop();
     }
 
-    public void Mute()
-    {
+    public void Mute() {
         isMuted = true;
     }
 
-    public void UnMute()
-    {
+    public void UnMute() {
         isMuted = false;
     }
 
-    public void SetMasterVolume(float thisMultiplier)
-    {
+    public void SetMasterVolume(float thisMultiplier) {
         masterVolume = thisMultiplier;
 
         actualMusicVolume = musicVolume * masterVolume;
         actualEffectVolume = effectVolume * masterVolume;
     }
 
-    public void SetMusicVolume(float thisVolume)
-    {
+    public void SetMusicVolume(float thisVolume) {
         musicVolume = thisVolume;
         actualMusicVolume = musicVolume * masterVolume;
     }
 
-    public void SetSXFVolume(float thisVolume)
-    {
+    public void SetSXFVolume(float thisVolume) {
         effectVolume = thisVolume;
         actualEffectVolume = effectVolume * masterVolume;
     }
 
-    public void SetPlayerSource(AudioSource thisSource)
-    {
+    public void SetPlayerSource(AudioSource thisSource) {
         playerSource = thisSource;
     }
 }

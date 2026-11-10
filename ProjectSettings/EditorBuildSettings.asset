@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 1d05401c53eb0a748b3154c407ee9855
   - enabled: 1
-    path: Assets/Scenes/Game Coru.unity
-    guid: 7e1e0fd3b13319340b1798f1d3ab4bda
+    path: Assets/Scenes/Credits.unity
+    guid: 248db989c7aedad4e9db093d9a0aeeb9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
