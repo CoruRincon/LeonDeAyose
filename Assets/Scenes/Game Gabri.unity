@@ -847,7 +847,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1502352096}
-  - {fileID: 1120206634}
   m_Father: {fileID: 490821157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &774442325
@@ -1811,13 +1810,14 @@ GameObject:
   - component: {fileID: 1589580588}
   - component: {fileID: 1589580587}
   - component: {fileID: 1589580590}
+  - component: {fileID: 1589580586}
   m_Layer: 0
   m_Name: ImageTarget (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1589580586
 MonoBehaviour:
   m_ObjectHideFlags: 0
