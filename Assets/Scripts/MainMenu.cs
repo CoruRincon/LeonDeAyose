@@ -20,4 +20,15 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void OnPlayCredits() {
+        Debug.Log("Pressed");
+        SceneManager.LoadScene("Credits");
+    }
+
+    public void OnPlayExit() {
+        Application.Quit();
+    }
+
+
+
 }
