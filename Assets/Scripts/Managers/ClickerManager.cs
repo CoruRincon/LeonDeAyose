@@ -23,6 +23,8 @@ public class ClickerManager : MonoBehaviour
         clickerInputs.Dispose();
     }
 
+    bool beingPressed = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,8 +35,11 @@ public class ClickerManager : MonoBehaviour
     void Update()
     {
         if (clickerInputs.Clicker.Click.IsPressed()) {
-            Debug.Log("Click");
+            if(beingPressed) { return; }
+            beingPressed = true;
             AudioManager.Instance.PlayEffectPlayer("Click");
+        } else {
+            beingPressed = false;
         }
     }
 }
