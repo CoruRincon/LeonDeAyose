@@ -169,11 +169,15 @@ MonoBehaviour:
   musicSource: {fileID: 702812037}
   effectsSource: {fileID: 1237268525}
   playerSource: {fileID: 454227889}
-  Music: []
+  Music:
+  - name: MenuMusic
+    effectSound: {fileID: 8300000, guid: d39035814499f2840bfc5b965a0ed00a, type: 3}
+  - name: GameMusic
+    effectSound: {fileID: 8300000, guid: d39035814499f2840bfc5b965a0ed00a, type: 3}
   Effects:
   - name: Click
     effectSound: {fileID: 8300000, guid: 8ff4785ffded572458e4d9676ddbc67b, type: 3}
-  musicEnabled: 0
+  musicEnabled: 1
   masterVolume: 1
   musicVolume: 0.5
   effectVolume: 1

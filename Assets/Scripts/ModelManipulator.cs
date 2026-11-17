@@ -39,8 +39,9 @@ public class ModelManipulator : MonoBehaviour {
     private void HandleMouse() {
         // Rotate only while left mouse button is held
         if (playerInputs._3DViewer.Rotate.IsPressed()) {
-            Vector2 delta =
-                playerInputs._3DViewer.PointerMovement.ReadValue<Vector2>();
+            Vector2 delta = playerInputs._3DViewer.PointerMovement.ReadValue<Vector2>();
+
+            delta = new Vector2(delta.x, -delta.y);
 
             Rotate(delta);
         }
