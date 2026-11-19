@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="11.4.4">
+<ModelTarget name="Spiffo" targetId="01537db54442446491492a769e06df4a" version="14.0" toolVersion="11.4.4" bbox="-0.153666 0.254614 -0.102362 0.100795 0.5 0.112493" upVector="0 1 0" previewImage="01537db54442446491492a769e06df4a_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Spiffos_assembly" assemblyId="938d3867806444698f10761fc444b3fe">
+<Part name="Spiffo" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="-0.0528166 0.366095 0.694735" rotation="AD: 1 -0.000249779 0.002618 190.9" image="Spiffo_GuideView_0000.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0001" translation="-0.038804 0.354079 0.721387" rotation="AD: 0.999989 0.022978 -0.213044 192.041" image="Spiffo_GuideView_0001.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0002" translation="-0.0399566 0.365883 0.663146" rotation="AD: 0.999942 -0.0324769 0.351858 189.948" image="Spiffo_GuideView_0002.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0003" translation="0.00907283 0.37053 0.609421" rotation="AD: 0.998362 -0.0698932 1.42761 183.212" image="Spiffo_GuideView_0003.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0004" translation="0.0458449 0.367823 0.61064" rotation="AD: -0.982334 0.187169 54.3749 180.007" image="Spiffo_GuideView_0004.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0005" translation="0.00450425 0.365206 0.682264" rotation="AD: 0.999875 0.0229883 -0.946669 182.02" image="Spiffo_GuideView_0005.png" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>
