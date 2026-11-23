@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayButton() {
         Debug.Log("Pressed");
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game Coru");
     }
 
     public void OnPlayCredits() {
