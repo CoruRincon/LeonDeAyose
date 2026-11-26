@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 // Datos y contenido de una pista. Va en el mismo objeto que su disparador.
 public class Clue : MonoBehaviour {
@@ -9,6 +10,7 @@ public class Clue : MonoBehaviour {
 
     [Header("Contenido")]
     public string title;
+    public TextMeshProUGUI bodyLabel;
     [TextArea(3, 10)] public string body;
     public GameObject[] contents;       // Todo lo que debe encenderse (incluye los padres apagados)
     public UnityEvent onShown;          // Extras: VideoPlayer.Play, sonidos...

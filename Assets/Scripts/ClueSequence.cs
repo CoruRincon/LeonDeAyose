@@ -86,7 +86,9 @@ public class ClueSequence : MonoBehaviour {
         clue.SetContents(true);
 
         if (titleLabel != null) { titleLabel.text = clue.title; }
-        if (bodyLabel != null) { bodyLabel.text = clue.body; }
+
+        if (clue.bodyLabel != null) { clue.bodyLabel.text = clue.body; }
+        else if (bodyLabel != null) { bodyLabel.text = clue.body; }
 
         clue.onShown?.Invoke();
     }
