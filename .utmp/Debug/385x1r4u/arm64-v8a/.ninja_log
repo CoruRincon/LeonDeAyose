@@ -1,0 +1,12 @@
+# ninja log v5
+93	442	8174200561981204	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	cc39f54f817ebfb0
+448	720	8174200564642019	C:/Users/Alumno tarde/Documents/VR/El leon de Ayose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/385x1r4u/obj/arm64-v8a/libswappywrapper.so	facb828f9d9dfba3
+27	1756	8174200575159438	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	4a77741ff92fa5c9
+1	1873	8174200576291401	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	dd7a154509170082
+10	1980	8174200577187440	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	87a786570b41fb2
+36	2082	8174200578147911	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	d2f2b38ee1b99729
+74	2112	8174200578792587	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	282b53f1b0bf1782
+59	2155	8174200579079345	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ad6783a84bda05f3
+46	2324	8174200580925410	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	5fe6c92a5124bf88
+19	2512	8174200582708157	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	719ced8eb2cba483
+2513	2730	8174200584763263	C:/Users/Alumno tarde/Documents/VR/El leon de Ayose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/385x1r4u/obj/arm64-v8a/libgame.so	fd6c7335a2309405
