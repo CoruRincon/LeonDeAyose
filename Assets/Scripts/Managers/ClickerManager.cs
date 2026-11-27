@@ -37,7 +37,7 @@ public class ClickerManager : MonoBehaviour
         if (clickerInputs.Clicker.Click.IsPressed()) {
             if(beingPressed) { return; }
             beingPressed = true;
-            AudioManager.Instance.PlayEffectPlayer("Click");
+            AudioManager.Instance.PlayEffectPlayer("Click", false);
         } else {
             beingPressed = false;
         }

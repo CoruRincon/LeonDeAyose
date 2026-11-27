@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameStates currentGameState;
 
-    public GameStates GetCurrentState() {
+    public GameStates GetGameState() {
         return currentGameState;
     }
 
@@ -29,10 +29,14 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        StartCoroutine(LoadScene("MainMenu"));
+        LoadScene("MainMenu");
     }
 
-    public IEnumerator LoadScene(string scene, bool isCinematic = false) {
+    public void LoadScene(string scene ){
+        StartCoroutine(LoadSceneAsync(scene));
+    }
+
+    private IEnumerator LoadSceneAsync(string scene, bool isCinematic = false) {
         Debug.Log("Loading: " + scene);
         // Start loading the scene
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
@@ -46,6 +50,8 @@ public class GameManager : MonoBehaviour {
 
         if (scene == "MainMenu") {
             currentGameState = GameStates.MENU;
+            AudioManager.Instance.SetMusicVolume(0.5f);
+            AudioManager.Instance.PlayMusic("MenuMusic");
         }
 
         if (scene == "Credits") {
@@ -54,6 +60,8 @@ public class GameManager : MonoBehaviour {
 
         if (scene == "Game" || scene == "Game Coru" || scene == "Game Gabri") {
             currentGameState = GameStates.PLAYING;
+            AudioManager.Instance.SetMusicVolume(0.25f);
+            AudioManager.Instance.PlayMusic("GameMusic");
         }
 
     }

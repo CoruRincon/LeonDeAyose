@@ -15,6 +15,9 @@ public class Clue : MonoBehaviour {
     public GameObject[] contents;       // Todo lo que debe encenderse (incluye los padres apagados)
     public UnityEvent onShown;          // Extras: VideoPlayer.Play, sonidos...
     [TextArea] public string hintForNext;
+    
+    [Tooltip("If enabled, this clue can be shown again by scanning it after it was unlocked.")]
+    public bool allowRescan = false;
 
     private void Start() {
         SetContents(false);

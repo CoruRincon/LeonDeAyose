@@ -8,12 +8,16 @@ public class RoomController : MonoBehaviour {
     public Transform room;          // room root, not parented to anything, kept upright
     public Transform startPoint;    // first hotspot (inside the room, at floor level)
 
+    [SerializeField] GameObject ARButton;
+    [SerializeField] GameObject ScannerButton;
+
     [Header("Settings")]
     public float eyeHeight = 1.5f;
-    public bool lockHeight = true;  // ignore the phone's up/down movement
-    public float moveSpeed = 4f;    // meters per second when travelling between points
+    public bool lockHeight = true;      // ignore the phone's up/down movement
+    public float moveSpeed = 4f;        // meters per second when travelling between points
     public string roomLayer = "Room";
     public float jumpThreshold = 35f;   // degrees per frame treated as a tracking jump
+    public bool exitScannerOnSpawn = true;
 
     static readonly RaycastHit[] hits = new RaycastHit[32];
 
@@ -24,8 +28,9 @@ public class RoomController : MonoBehaviour {
     Hotspot[] spots;
 
     int mask;
-    Vector3 pivotLocal;             // current floor point, in room-local space
-    float lockedY;
+    Vector3 pivotLocal;     // current standing point, in room-local space (y = floor)
+    float floorLocalY;      // room-local height of the floor
+    float lockedY;          // world height of the camera when the room spawned
     float lastYaw;
 
     bool ready, spawned, scanner, haveYaw;
@@ -35,6 +40,7 @@ public class RoomController : MonoBehaviour {
     void Awake() {
         actions = new PlayerActions();
         actions.Clicker.Click.performed += OnClick;
+        SetScanner(true);
     }
 
     void OnEnable() { actions.Clicker.Enable(); }
@@ -88,13 +94,30 @@ public class RoomController : MonoBehaviour {
         room.gameObject.SetActive(true);
 
         spots = room.GetComponentsInChildren<Hotspot>(true);
+
+        // The floor height comes from the start point, and is used for every hotspot
+        floorLocalY = room.InverseTransformPoint(startPoint.position).y;
+
         SetCurrent(startPoint);
-        pivotLocal = room.InverseTransformPoint(startPoint.position);
+        pivotLocal = PointLocal(currentPoint);
         lockedY = camT.position.y;
 
         // Make the start point face the way the camera is facing
         float pointYawInRoom = (Quaternion.Inverse(room.rotation) * startPoint.rotation).eulerAngles.y;
         room.rotation = Quaternion.Euler(0, CamYaw() - pointYawInRoom, 0);
+        Follow();
+
+        lastYaw = CamYaw();
+        haveYaw = true;
+
+        if (exitScannerOnSpawn) SetScanner(false);
+    }
+
+    public void RecenterStart() {
+        if (!spawned || !ready) return;
+
+        float delta = CamYaw() - startPoint.eulerAngles.y;
+        room.rotation = Quaternion.Euler(0, delta, 0) * room.rotation;
         Follow();
 
         lastYaw = CamYaw();
@@ -119,10 +142,17 @@ public class RoomController : MonoBehaviour {
         scanner = on;
         if (on) cam.cullingMask &= ~mask;
         else cam.cullingMask |= mask;
+
+        UpdateScannerButtons();
     }
 
     public void ToggleScanner() {
         SetScanner(!scanner);
+    }
+
+    public void UpdateScannerButtons() {
+        if (ARButton) ARButton.SetActive(scanner);
+        if (ScannerButton) ScannerButton.SetActive(!scanner);
     }
 
     // ---------------------------------------------------------------- Input
@@ -160,22 +190,41 @@ public class RoomController : MonoBehaviour {
 
         AbsorbYawJumps();
 
-        // Glide toward the selected hotspot
-        Vector3 target = room.InverseTransformPoint(currentPoint.position);
-        pivotLocal = Vector3.MoveTowards(pivotLocal, target, moveSpeed * Time.deltaTime);
+        // Glide toward the selected hotspot (horizontal only, height stays at eyeHeight)
+        Vector3 target = PointLocal(currentPoint);
+        float scale = Mathf.Max(0.0001f, room.lossyScale.x);
+        float step = moveSpeed * Time.deltaTime / scale;   // moveSpeed is in world meters
+        pivotLocal = Vector3.MoveTowards(pivotLocal, target, step);
 
         Follow();
     }
 
+    // Keeps the room's current standing point exactly under the camera, at eye height.
+    // Rotation is never touched here.
     void Follow() {
         float y = lockHeight ? lockedY : camT.position.y;
         Vector3 want = new Vector3(camT.position.x, y - eyeHeight, camT.position.z);
-        room.position = want - room.rotation * pivotLocal;
+        room.position = want - room.TransformVector(pivotLocal);   // handles rotation AND scale
+    }
+
+    // A hotspot's position in room-local space, at floor height
+    Vector3 PointLocal(Transform t) {
+        Vector3 p = room.InverseTransformPoint(t.position);
+        p.y = floorLocalY;
+        return p;
     }
 
     void SetCurrent(Transform t) {
-        currentPoint = t;
-        foreach (var s in spots) s.gameObject.SetActive(s.transform != t);
+        var h = t.GetComponentInParent<Hotspot>();
+        if (h == null) {
+            Debug.LogWarning("[Room] '" + t.name + "' has no Hotspot component, so it can't be hidden.");
+            currentPoint = t;
+            foreach (var s in spots) s.gameObject.SetActive(true);
+            return;
+        }
+
+        currentPoint = h.transform;
+        foreach (var s in spots) s.gameObject.SetActive(s != h);
     }
 
     // ---------------------------------------------------------------- Yaw handling
@@ -212,7 +261,9 @@ public class RoomController : MonoBehaviour {
     static void SetLayer(GameObject go, int layer) {
         go.layer = layer;
         foreach (Transform t in go.transform) {
-            if (t.GetComponent<RectTransform>()) continue;  // leave UI objects alone
+            // leave screen-space UI alone, but include world-space canvases
+            var canvas = t.GetComponent<Canvas>();
+            if (canvas && canvas.renderMode != RenderMode.WorldSpace) continue;
             SetLayer(t.gameObject, layer);
         }
     }

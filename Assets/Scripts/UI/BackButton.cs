@@ -22,6 +22,6 @@ public class BackButton : MonoBehaviour
 
     public void OnBackButton() {
         Debug.Log("Pressed");
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.LoadScene("MainMenu");
     }
 }

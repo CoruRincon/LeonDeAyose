@@ -1,12 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -17,12 +15,12 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayButton() {
         Debug.Log("Pressed");
-        SceneManager.LoadScene("Game");
+        GameManager.Instance.LoadScene("Game");
     }
 
     public void OnPlayCredits() {
         Debug.Log("Pressed");
-        SceneManager.LoadScene("Credits");
+        GameManager.Instance.LoadScene("Credits");
     }
 
     public void OnPlayExit() {

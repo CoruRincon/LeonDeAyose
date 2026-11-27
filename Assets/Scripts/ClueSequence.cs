@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,7 +17,10 @@ public class ClueSequence : MonoBehaviour {
     [Header("Mensajes")]
     [SerializeField, TextArea] private string startMessage = "Escanea la primera pista.";
     [SerializeField, TextArea] private string wrongOrderMessage = "Todavía no. Sigue el orden.";
-    [SerializeField, TextArea] private string completedMessage = "¡Has completado todas las pistas!";
+    [SerializeField, TextArea] private string completedMessage = "¡Has completado todas las pistas!";    
+    [SerializeField, TextArea] private string alreadyScannedMessage = "Pista ya escaneada. Esta es de un solo uso";
+
+    [SerializeField] private float messagesDuration;
 
     [Header("Eventos")]
     [SerializeField] private UnityEvent onClueUnlocked;
@@ -25,6 +29,8 @@ public class ClueSequence : MonoBehaviour {
     private readonly List<Clue> clues = new List<Clue>();
     private int currentStep = 0;
     private Clue shown;
+
+    bool messageShowing = false;
 
     private void Awake() {
         Instance = this;
@@ -57,8 +63,17 @@ public class ClueSequence : MonoBehaviour {
 
         bool isNew = index == currentStep;
 
-        // Pista ya mostrada y sin cambios: no repetir (evita reiniciar el vídeo)
-        if (!isNew && clue == shown) { return; }
+        // Pista ya desbloqueada antes
+        if (!isNew) {
+            if (!clue.allowRescan) {
+                if (!string.IsNullOrEmpty(alreadyScannedMessage)) { SetMessage(alreadyScannedMessage); }
+                return;
+            }
+
+            // Se permite volver a verla, pero no repetir si ya se está mostrando
+            // (evita reiniciar el vídeo)
+            if (clue == shown) { return; }
+        }
 
         Show(clue);
 
@@ -83,12 +98,20 @@ public class ClueSequence : MonoBehaviour {
         }
 
         shown = clue;
-        clue.SetContents(true);
+        clue.SetContents(true);   // must come first so the label is active before writing
 
-        if (titleLabel != null) { titleLabel.text = clue.title; }
+        if (titleLabel != null) titleLabel.text = clue.title;
 
-        if (clue.bodyLabel != null) { clue.bodyLabel.text = clue.body; }
-        else if (bodyLabel != null) { bodyLabel.text = clue.body; }
+        if (clue.bodyLabel != null) {
+            if (clue.bodyLabel.TryGetComponent(out StepWriter writer)) {
+                Debug.Log("Found writer");
+                writer.Write(clue.body);
+            } else {
+                clue.bodyLabel.text = clue.body;
+            }
+        } else if (bodyLabel != null) {
+            bodyLabel.text = clue.body;
+        }
 
         clue.onShown?.Invoke();
     }
@@ -108,6 +131,23 @@ public class ClueSequence : MonoBehaviour {
     }
 
     private void SetMessage(string text) {
+        if(messageShowing) {
+            messageLabel.transform.parent.gameObject.SetActive(false);
+        }
         if (messageLabel != null) { messageLabel.text = text; }
+        StartCoroutine(ShowMessage(messagesDuration));
     }
+
+    private IEnumerator ShowMessage(float duration) {
+
+        messageShowing = true;
+
+        messageLabel.transform.parent.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(duration);
+
+        messageLabel.transform.parent.gameObject.SetActive(false);
+
+    }
+
 }

@@ -1,12 +1,12 @@
 # ninja log v5
-67	764	8171533027157777	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	2b4e9debf9c6c6ba
-766	1393	8171533032816580	D:/Documents/VJRV/LeonDeAyose/LeonDeAyose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1u4h324m/obj/arm64-v8a/libswappywrapper.so	60005f90206079af
-32	2117	8171533040736334	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	5418187a8e36d0a
-23	2126	8171533040773067	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	907c6672cd49f245
-15	2146	8171533041038558	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	48253be917a08a24
-59	2157	8171533041138499	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	75849200c67bd15d
-8	2271	8171533042295154	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2f34c4d892147d74
-39	2398	8171533043552792	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	669e140292b6dd00
-1	2490	8171533044496418	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e2cfd5a7f102323a
-50	2757	8171533047152954	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b652e6976dd94bc1
-2757	2854	8171533048142085	D:/Documents/VJRV/LeonDeAyose/LeonDeAyose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1u4h324m/obj/arm64-v8a/libgame.so	46b9ad2374bc7b6e
+41	766	8174323826712248	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	2b4e9debf9c6c6ba
+768	1185	8174323830619310	D:/Documents/VJRV/LeonDeAyose/LeonDeAyose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1u4h324m/obj/arm64-v8a/libswappywrapper.so	60005f90206079af
+16	1653	8174323835063399	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	907c6672cd49f245
+26	1660	8174323835411726	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	5418187a8e36d0a
+1	1661	8174323835411726	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	48253be917a08a24
+31	1663	8174323835411726	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	75849200c67bd15d
+11	1709	8174323836200671	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2f34c4d892147d74
+21	1766	8174323836747660	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	669e140292b6dd00
+6	1837	8174323837424396	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e2cfd5a7f102323a
+36	2107	8174323840185428	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b652e6976dd94bc1
+2107	2247	8174323841551525	D:/Documents/VJRV/LeonDeAyose/LeonDeAyose/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1u4h324m/obj/arm64-v8a/libgame.so	46b9ad2374bc7b6e

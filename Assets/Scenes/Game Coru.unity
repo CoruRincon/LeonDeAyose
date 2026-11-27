@@ -1067,7 +1067,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519234492}
   - component: {fileID: 519234489}
-  - component: {fileID: 519234494}
   - component: {fileID: 519234495}
   m_Layer: 0
   m_Name: StartTarget
@@ -1137,34 +1136,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519234494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519234488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4cf4fdeea307846a93675e8ddc0662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  onFound:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1650565755}
-        m_TargetAssemblyTypeName: RoomController, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  once: 1
 --- !u!114 &519234495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1417,7 +1388,6 @@ GameObject:
   m_Component:
   - component: {fileID: 746259613}
   - component: {fileID: 746259612}
-  - component: {fileID: 746259615}
   - component: {fileID: 746259616}
   m_Layer: 0
   m_Name: ImageTarget
@@ -1468,22 +1438,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &746259615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746259609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4cf4fdeea307846a93675e8ddc0662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScanTrigger
-  onFound:
-    m_PersistentCalls:
-      m_Calls: []
-  once: 1
 --- !u!114 &746259616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,7 +1914,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1068116356}
   - component: {fileID: 1068116355}
-  - component: {fileID: 1068116358}
   - component: {fileID: 1068116359}
   m_Layer: 0
   m_Name: ImageTarget (2)
@@ -2011,22 +1964,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1068116358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068116352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4cf4fdeea307846a93675e8ddc0662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScanTrigger
-  onFound:
-    m_PersistentCalls:
-      m_Calls: []
-  once: 1
 --- !u!114 &1068116359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2056,7 +1993,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1109693729}
   - component: {fileID: 1109693728}
-  - component: {fileID: 1109693731}
   - component: {fileID: 1109693732}
   m_Layer: 0
   m_Name: ImageTarget (3)
@@ -2107,22 +2043,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1109693731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109693725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4cf4fdeea307846a93675e8ddc0662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScanTrigger
-  onFound:
-    m_PersistentCalls:
-      m_Calls: []
-  once: 1
 --- !u!114 &1109693732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3248,9 +3168,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   room: {fileID: 398949123}
-  spawnPoint: {fileID: 1650565754}
+  startPoint: {fileID: 0}
+  ARButton: {fileID: 0}
+  ScannerButton: {fileID: 0}
   eyeHeight: 1.5
+  lockHeight: 1
+  moveSpeed: 4
   roomLayer: Room
+  jumpThreshold: 35
+  exitScannerOnSpawn: 1
 --- !u!1 &1733896563
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,7 +3344,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1773028984}
   - component: {fileID: 1773028983}
-  - component: {fileID: 1773028986}
   - component: {fileID: 1773028987}
   m_Layer: 0
   m_Name: ImageTarget (1)
@@ -3469,22 +3394,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1773028986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773028980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4cf4fdeea307846a93675e8ddc0662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScanTrigger
-  onFound:
-    m_PersistentCalls:
-      m_Calls: []
-  once: 1
 --- !u!114 &1773028987
 MonoBehaviour:
   m_ObjectHideFlags: 0
